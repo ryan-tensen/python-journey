@@ -1,11 +1,10 @@
-# # number = int(input("Enter a number: "))
-# # if number>0:
-# #     print("Positive")
-# # elif number < 0 :
-# #     print("Negative")
-# # else:
-# #     print("Zero")
-# from logging import exception
+number = int(input("Enter a number: "))
+if number>0:
+    print("Positive")
+elif number < 0 :
+    print("Negative")
+else:
+    print("Zero")
 
 try:
     user_age = int(input("Enter a age: "))
