@@ -100,3 +100,35 @@ obj1 = Person("Kumaresan", 24)
 obj2 = Employee("Kumaresan", 24, "Vsolv", 10000)
 print(obj1.greet())
 print(obj2.work())
+
+
+# Can you write a class called BankAccount from scratch with:
+
+# balance starting at 0
+# method deposit(amount) that adds to balance
+# method withdraw(amount) that subtracts from balance
+# method get_balance() that returns current balance
+
+class BankAccount:
+    def __init__(self, balance):
+        self.balance = balance
+
+    def deposit(self, amount):
+        self.balance = self.balance + amount
+        return f"Balance amount is {self.balance}"
+
+    def withdraw(self, amount):
+        if amount <= self.balance:
+            self.balance = self.balance - amount
+            return f"Balance amount after withdrawal is {self.balance}"
+        else:
+            return f"Amount need to be less than balance amount"
+
+    def get_balance(self):
+        return f"Balance is {self.balance}"
+
+
+obj1 = BankAccount(0)
+print(obj1.deposit(500))
+print(obj1.withdraw(1000))
+print(obj1.get_balance())
