@@ -56,10 +56,10 @@ print(car1.brake(100))
 # 1. Creates a file called "students.txt"
 # 2. Writes 3 student names to it, one per line
 
-# with open("students.txt","w") as student_file:
-#     student_file.write("Kumaresan\n")
-#     student_file.write("Karthi\n")
-#     student_file.write("Akash")
+with open("students.txt","w") as student_file:
+    student_file.write("Kumaresan\n")
+    student_file.write("Karthi\n")
+    student_file.write("Akash")
 
 # Read the students.txt file you just created
 # and print each name with a number.
@@ -70,22 +70,22 @@ print(car1.brake(100))
 # 3. Akash
 
 
-# with open("students.txt","r") as student_file:
-#     for index,name in enumerate(student_file,1):
-#         print(f"{index}. {name.strip()}")
+with open("students.txt","r") as student_file:
+    for index,name in enumerate(student_file,1):
+        print(f"{index}. {name.strip()}")
 
 # Write a program that:
 # 1. Asks the user to enter a student name
 # 2. Appends it to students.txt (don't overwrite existing names)
 # 3. Reads and prints all names from the file
 
-# name = input("Enter the student name: ")
-# with open ("students.txt","a") as student_file:
-#     student_file.write(f"\n{name}\n")
-#
-# with open("students.txt","r") as student_file:
-#     for index,name in enumerate(student_file,1):
-#         print(f"{index}. {name.strip()}")
+name = input("Enter the student name: ")
+with open ("students.txt","a") as student_file:
+    student_file.write(f"\n{name}\n")
+
+with open("students.txt","r") as student_file:
+    for index,name in enumerate(student_file,1):
+        print(f"{index}. {name.strip()}")
 
 
 # Write a program that:
