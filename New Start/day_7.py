@@ -22,3 +22,13 @@ data = response.json()
 print(f"Username: {data['login']}"
       f"\nPublic repos: {data['public_repos']}"
       f"\nAccount created:{data['created_at']}")
+
+
+import requests
+response = requests.get("https://api.github.com/users/ryan-tensen/repos")
+print(response.json())
+data = response.json()
+for i in data:
+    print(i['name'])
+
+print(len(data))
