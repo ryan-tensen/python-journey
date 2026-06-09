@@ -11,15 +11,15 @@
 # 5. Print current day name (Monday, Tuesday etc)
 
 
-# from math import sqrt, pi, ceil
-# from datetime import date
-#
-#
-# print(sqrt(144))
-# print(pi)
-# print(ceil(4.7))
-# print(date.today())
-# print(date.today().strftime("%A"))
+from math import sqrt, pi, ceil
+from datetime import date
+
+
+print(sqrt(144))
+print(pi)
+print(ceil(4.7))
+print(date.today())
+print(date.today().strftime("%A"))
 
 
 # 1. Create a new file called "calculator.py"
