@@ -4,6 +4,18 @@
 # 3. Reads and displays all students
 # 4. Shows the highest, lowest and average score
 # 5. Lets user search for a student by name
+
+# Add one more method to GradeManager called:
+#
+# update_score(name, new_score)
+#
+# It should:
+# 1. Find the student by name
+# 2. Update their score
+# 3. Return "Score updated successfully"
+# 4. If student not found → return "Student not found"
+# 5. Save to file automatically after updating
+
 import json
 
 
@@ -72,6 +84,21 @@ class GradeManager():
         except FileNotFoundError:
             return "File not found"
 
+    # It should:
+    # 1. Find the student by name
+    # 2. Update their score
+    # 3. Return "Score updated successfully"
+    # 4. If student not found → return "Student not found"
+    # 5. Save to file automatically after updating
+
+    def update_score(self,name,score):
+        for student in self.student_data:
+            if student.name == name:
+                student.score = score
+                self.save_to_file()
+                return f"Score updated successfully"
+
+        return "Student not found"
 
 
 # Stu_obj = GradeManager()
@@ -94,6 +121,10 @@ Stu_obj2 = GradeManager()
 print(Stu_obj2.load_from_file())
 Stu_obj2.show_students()
 print(Stu_obj2.get_stats())
+print(Stu_obj2.update_score("Karthikumar",87))
+print(Stu_obj.save_to_file())
+print(Stu_obj2.load_from_file())
+Stu_obj2.show_students()
 
 
 
