@@ -111,7 +111,7 @@ class GradeManager():
                     for student in student_data:
                         if student["name"] == kwargs["name"]:
                             del student["name"]
-                    return f"Student removed successfully"
+                            return f"Student removed successfully"
 
         except ValueError:
             return "No students added or deleted"
