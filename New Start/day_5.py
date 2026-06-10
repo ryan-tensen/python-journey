@@ -132,3 +132,40 @@ obj1 = BankAccount(0)
 print(obj1.deposit(500))
 print(obj1.withdraw(1000))
 print(obj1.get_balance())
+
+
+
+# Write a new class called Library from scratch:
+# - books (list, starts empty)
+# - add_book(title) — adds book to list
+# - remove_book(title) — removes book from list
+# - show_books() — prints all books
+
+
+class Library:
+    def __init__(self):
+        self.books = []
+
+    def add_book(self,title):
+        self.books.append(title)
+        return f"Book {title} has been added"
+
+    def remove_book(self,title):
+        if title in self.books:
+            self.books.remove(title)
+            return f"Book {title} has been removed"
+        else:
+            return f"Book not found in Library"
+
+    def show_books(self):
+        for index,book in enumerate(self.books,1):
+            print(index,book)
+
+library = Library()
+print(library.add_book("Atomic Habits"))
+print(library.add_book("Automate boring stuff with python"))
+print(library.add_book("Deep Work"))
+print(library.remove_book("Deep Work"))
+library.show_books()
+
+
