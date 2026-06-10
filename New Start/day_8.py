@@ -101,6 +101,24 @@ class GradeManager():
         return "Student not found"
 
 
+    def remove_or_add(self,**kwargs):
+        try:
+            if "update" == kwargs["type"]:
+                self.update_score(kwargs["name"],kwargs["score"])
+            if "delete" == kwargs["type"]:
+                with open(self.file_name, "r") as student_data:
+                    student_data = json.load(student_data)
+                    for student in student_data:
+                        if student["name"] == kwargs["name"]:
+                            del student["name"]
+                    return f"Student removed successfully"
+
+        except ValueError:
+            return "No students added or deleted"
+
+
+
+
 # Stu_obj = GradeManager()
 # print(Stu_obj.add_student("Karthikumar",100))
 # print(Stu_obj.add_student("Kumaresan",90))
@@ -125,6 +143,9 @@ print(Stu_obj2.update_score("Karthikumar",87))
 print(Stu_obj.save_to_file())
 print(Stu_obj2.load_from_file())
 Stu_obj2.show_students()
+print(Stu_obj2.remove_or_add(name="Karthikumar",score=87,type="delete"))
+Stu_obj2.show_students()
+print(Stu_obj2.remove_or_add(name="Karthikumar",score=87,type="delete"))
 
 
 
