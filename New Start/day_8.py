@@ -18,6 +18,8 @@
 
 import json
 
+from fontTools.misc.cython import returns
+
 
 class Student():
     def __init__(self,name,score):
@@ -42,7 +44,7 @@ class GradeManager():
         scores = []
         try:
             for student in self.student_data:
-                scores.append(student.score)
+                scores.append(int(student.score))
 
             return (f"Highest score: {max(scores)}"
                     f"\nLowest score: {min(scores)}"
@@ -128,24 +130,77 @@ class GradeManager():
 # print(Stu_obj.save_to_file())
 # print(Stu_obj.load_from_file())
 
-Stu_obj = GradeManager()
-print(Stu_obj.add_student("Karthikumar", 100))
-print(Stu_obj.add_student("Kumaresan", 90))
-print(Stu_obj.add_student("Akash", 85))
-print(Stu_obj.save_to_file())
+# Stu_obj = GradeManager()
+# print(Stu_obj.add_student("Karthikumar", 100))
+# print(Stu_obj.add_student("Kumaresan", 90))
+# print(Stu_obj.add_student("Akash", 85))
+# print(Stu_obj.save_to_file())
+#
+# # Now create a new object and load from file
+# Stu_obj2 = GradeManager()
+# print(Stu_obj2.load_from_file())
+# Stu_obj2.show_students()
+# print(Stu_obj2.get_stats())
+# print(Stu_obj2.update_score("Karthikumar",87))
+# print(Stu_obj.save_to_file())
+# print(Stu_obj2.load_from_file())
+# Stu_obj2.show_students()
+# print(Stu_obj2.remove_or_add(name="Karthikumar",score=87,type="delete"))
+# Stu_obj2.show_students()
+# print(Stu_obj2.remove_or_add(name="Karthikumar",score=87,type="delete"))
 
-# Now create a new object and load from file
-Stu_obj2 = GradeManager()
-print(Stu_obj2.load_from_file())
-Stu_obj2.show_students()
-print(Stu_obj2.get_stats())
-print(Stu_obj2.update_score("Karthikumar",87))
-print(Stu_obj.save_to_file())
-print(Stu_obj2.load_from_file())
-Stu_obj2.show_students()
-print(Stu_obj2.remove_or_add(name="Karthikumar",score=87,type="delete"))
-Stu_obj2.show_students()
-print(Stu_obj2.remove_or_add(name="Karthikumar",score=87,type="delete"))
+
+
+def menu_list():
+    list_of_menu = ["Add Student", "Show All Students", "Search Student", "Show Statistics", " Update Score", "Exit"]
+    for index,menu in enumerate(list_of_menu,1):
+        print(f"{index}.{menu}")
+
+print(f"=========Student Grade Manager=======")
+menu_list()
+
+Stu_obj = GradeManager()
+Stu_obj.load_from_file()
+while True:
+    choice = input("Enter Choice: ")
+    if choice == "Add Student" or choice == "1":
+        name = input("Enter Student Name: ")
+        score = input("Enter Student Score: ")
+        add_student = Student(name,score)
+        Stu_obj.add_student(name,int(score))
+        result = f"Student added successfully"
+        print(result)
+        menu_list()
+
+    elif choice == "Show All Students" or choice == "2":
+        Stu_obj.show_students()
+        menu_list()
+
+    elif choice == "Search Student" or choice == "3":
+        name = input("Enter Student Name: ")
+        result = Stu_obj.search_by_name(name)
+        print(result)
+        menu_list()
+
+    elif choice == "Show Statistics" or choice == "4":
+        result = Stu_obj.get_stats()
+        print(result)
+        menu_list()
+
+    elif choice == "Update Score" or choice == "5":
+        name = input("Enter Student Name: ")
+        score = input("Enter Student Score: ")
+        result = Stu_obj.update_score(name,int(score))
+        print(result)
+        menu_list()
+
+    elif choice == "Exit" or choice == "6":
+        result = f"Exited from student grade manager"
+        print(result)
+        break
+
+    else:
+        print("Enter a valid choice or input")
 
 
 
