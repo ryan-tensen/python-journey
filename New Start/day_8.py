@@ -30,6 +30,7 @@ class GradeManager():
     def __init__(self):
         self.student_data = []
         self.file_name = "students.json"
+        self.report = "students_report.txt"
 
     def add_student(self,name,score):
         student = Student(name,score)
@@ -130,6 +131,24 @@ class GradeManager():
         except ValueError:
             return "Student not found"
 
+    def export_to_txt(self):
+        student_list = []
+        scores = []
+        for student in self.student_data:
+            student_list.append({"name": student.name, "score": student.score})
+            scores.append(student.score)
+        with open(self.report, "w") as student_data:
+            student_data.write(f"========= Student Report =========\n")
+            for index, student in enumerate(student_list, 1):
+                student_data.write(f"{index}. {student['name']} - {student['score']}\n")
+            student_data.write("\n")
+            student_data.write(f"Statistics:\n")
+            student_data.write(f"Highest score: {max(scores)}\n")
+            student_data.write(f"Lowest score: {min(scores)}\n")
+            student_data.write(f"Average score: {sum(scores)/len(scores)}\n")
+
+        return f"File saved successfully"
+
 
 
 
@@ -175,52 +194,54 @@ menu_list()
 
 Stu_obj = GradeManager()
 Stu_obj.load_from_file()
-while True:
-    choice = input("Enter Choice: ")
-    if choice == "Add Student" or choice == "1":
-        name = input("Enter Student Name: ")
-        score = input("Enter Student Score: ")
-        add_student = Student(name,score)
-        Stu_obj.add_student(name,int(score))
-        result = f"Student added successfully"
-        print(result)
-        menu_list()
-
-    elif choice == "Show All Students" or choice == "2":
-        Stu_obj.show_students()
-        menu_list()
-
-    elif choice == "Search Student" or choice == "3":
-        name = input("Enter Student Name: ")
-        result = Stu_obj.search_by_name(name)
-        print(result)
-        menu_list()
-
-    elif choice == "Show Statistics" or choice == "4":
-        result = Stu_obj.get_stats()
-        print(result)
-        menu_list()
-
-    elif choice == "Update Score" or choice == "5":
-        name = input("Enter Student Name: ")
-        score = input("Enter Student Score: ")
-        result = Stu_obj.update_score(name,int(score))
-        print(result)
-        menu_list()
-
-    elif choice == "Exit" or choice == "6":
-        result = f"Exited from student grade manager"
-        print(result)
-        break
-
-    elif choice == "Delete Student" or choice == "7":
-        name = input("Enter Student Name: ")
-        result = Stu_obj.delete_student(name)
-        print(result)
-        menu_list()
-
-    else:
-        print("Enter a valid choice or input")
+print(Stu_obj.export_to_txt())
+# while True:
+#     choice = input("Enter Choice: ")
+#     if choice == "Add Student" or choice == "1":
+#         name = input("Enter Student Name: ")
+#         score = input("Enter Student Score: ")
+#         add_student = Student(name,score)
+#         Stu_obj.add_student(name,int(score))
+#         result = f"Student added successfully"
+#         print(result)
+#         menu_list()
+#
+#     elif choice == "Show All Students" or choice == "2":
+#         Stu_obj.show_students()
+#         menu_list()
+#
+#     elif choice == "Search Student" or choice == "3":
+#         name = input("Enter Student Name: ")
+#         result = Stu_obj.search_by_name(name)
+#         print(result)
+#         menu_list()
+#
+#     elif choice == "Show Statistics" or choice == "4":
+#         result = Stu_obj.get_stats()
+#         print(result)
+#         menu_list()
+#
+#     elif choice == "Update Score" or choice == "5":
+#         name = input("Enter Student Name: ")
+#         score = input("Enter Student Score: ")
+#         result = Stu_obj.update_score(name,int(score))
+#         print(result)
+#         menu_list()
+#
+#
+#     elif choice == "Delete Student" or choice == "6":
+#         name = input("Enter Student Name: ")
+#         result = Stu_obj.delete_student(name)
+#         print(result)
+#         menu_list()
+#
+#     elif choice == "Exit" or choice == "7":
+#         result = f"Exited from student grade manager"
+#         print(result)
+#         break
+#
+#     else:
+#         print("Enter a valid choice or input")
 
 
 
