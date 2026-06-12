@@ -118,6 +118,20 @@ class GradeManager():
         except ValueError:
             return "No students added or deleted"
 
+    def delete_student(self,name):
+        try:
+            for student in self.student_data:
+                if str(student.name) == name:
+                    self.student_data.remove(student)
+                    self.save_to_file()
+                    return f"Student removed successfully"
+            else:
+                return "Student not found"
+        except ValueError:
+            return "Student not found"
+
+
+
 
 
 
@@ -152,7 +166,7 @@ class GradeManager():
 
 
 def menu_list():
-    list_of_menu = ["Add Student", "Show All Students", "Search Student", "Show Statistics", " Update Score", "Exit"]
+    list_of_menu = ["Add Student", "Show All Students", "Search Student", "Show Statistics", " Update Score", "Delete Student","Exit"]
     for index,menu in enumerate(list_of_menu,1):
         print(f"{index}.{menu}")
 
@@ -198,6 +212,12 @@ while True:
         result = f"Exited from student grade manager"
         print(result)
         break
+
+    elif choice == "Delete Student" or choice == "7":
+        name = input("Enter Student Name: ")
+        result = Stu_obj.delete_student(name)
+        print(result)
+        menu_list()
 
     else:
         print("Enter a valid choice or input")
