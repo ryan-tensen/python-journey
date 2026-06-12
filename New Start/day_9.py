@@ -10,7 +10,8 @@
 from day_8 import Student,GradeManager
 
 def menu_list():
-    list_of_menu = ["Add Student", "Show All Students", "Search Student", "Show Statistics", " Update Score", "Exit"]
+    list_of_menu = ["Add Student", "Show All Students", "Search Student", "Show Statistics", " Update Score", "Exit",
+                    "Delete Student"]
     for index,menu in enumerate(list_of_menu,1):
         print(f"{index}.{menu}")
 
@@ -55,6 +56,12 @@ while True:
         result = f"Exited from student grade manager"
         print(result)
         break
+
+    elif choice == "Delete Student" or choice == "7":
+        name = input("Enter Student Name: ")
+        result = Stu_obj.delete_student(name)
+        print(result)
+        menu_list()
 
     else:
         print("Enter a valid choice or input")
