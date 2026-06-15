@@ -57,3 +57,30 @@ def create_student(request):
     else:
         return JsonResponse({"message":"Method not allowed"},status=405)
 
+
+@csrf_exempt
+def update_student(request,student_id):
+    if request.method == "PUT":
+        try:
+            data = json.loads(request.body)
+            new_score = data.get("score")
+            student = Student.objects.get(id=student_id)
+            student.score = new_score
+            student.save()
+            return JsonResponse({"message":"Student updated successfully"},status=200)
+        except Student.DoesNotExist:
+            return JsonResponse({"message":"Student not Found"},status=404)
+    else:
+        return JsonResponse({"message":"Method not allowed"},status=405)
+
+@csrf_exempt
+def delete_student(request,student_id):
+    if request.method == "DELETE":
+        try:
+            student = Student.objects.get(id=student_id)
+            student.delete()
+            return JsonResponse({"message":"Student deleted successfully"},status=200)
+        except Student.DoesNotExist:
+            return JsonResponse({"message":"Student not found"},status=404)
+    else:
+        return JsonResponse({"message":"Method not allowed"},status=405)
