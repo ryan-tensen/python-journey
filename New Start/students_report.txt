@@ -1,0 +1,8 @@
+========= Student Report =========
+1. Akash - 90
+2. Karthi - 89
+
+Statistics:
+Highest score: 90
+Lowest score: 89
+Average score: 89.5
