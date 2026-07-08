@@ -64,6 +64,25 @@ def change_list(nums):
 print(change_list([0, 1, 0, 3, 12]))
 
 
+
+# without creating new list
+
+def change_list(nums):
+    position = 0
+    for i in range(len(nums)):
+        if nums[i] != 0:
+            nums[position] = nums[i]
+            position += 1
+
+    while position < len(nums):
+        nums[position] = 0
+        position += 1
+
+    return nums
+
+
+print(change_list([0, 1, 0, 2, 4]))
+
 # Given a string, find the first non-repeating character.
 # Return its index. If none exists return -1.
 
